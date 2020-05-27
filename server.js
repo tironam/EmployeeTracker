@@ -12,6 +12,22 @@ const connection = mysql.createConnection({
     database: 'work_db'
 })
 
+let choosePrompt = () => {
+    prompt([
+        {
+            type: 'list',
+            name: 'prompt',
+            message: 'What would you like to do?',
+            choices: ['View all employees', 'View all roles', 'View all departments', 'Add employee', 'Update employee role']
+        }
+    ])
+    .then(({ choice }) => {
+        switch(choice) {
+            
+        }
+    })
+}
+
 app.use(express.static(join(__dirname, 'public')))
 app.use(expres.urlencoded({ extended: true }))
 app.use(express.json())
