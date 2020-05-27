@@ -4,6 +4,14 @@ const { promisify } = require('util')
 const express = require('express')
 const app = express()
 
+const connection = mysql.createConnection({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: 'rootroot',
+    database: 'work_db'
+})
+
 app.use(express.static(join(__dirname, 'public')))
 app.use(expres.urlencoded({ extended: true }))
 app.use(express.json())
