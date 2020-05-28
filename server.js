@@ -3,14 +3,13 @@ const { prompt } = require('inquirer')
 const { promisify } = require('util')
 const express = require('express')
 const app = express()
+const path = require('path')
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'rootroot',
-    database: 'work_db'
-})
+const db = require('./db')
+
+app.use(express.static(join(__dirname, 'public')))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 let choosePrompt = () => {
     prompt([
@@ -23,14 +22,27 @@ let choosePrompt = () => {
     ])
     .then(({ choice }) => {
         switch(choice) {
-            
+            case 'View all employees':
+                viewEmployees()
+                break
+            case 'View all roles':
+                viewRoles()
+                break
+            case 'View all departments':
+                viewDepts()
+                break
+            case 'Add Employee':
+                addEmployee()
+                break
         }
     })
 }
 
-app.use(express.static(join(__dirname, 'public')))
-app.use(expres.urlencoded({ extended: true }))
-app.use(express.json())
+choosePrompt()
+
+const viewEmployees = () => {
+
+}
 
 app.listen(process.env.PORT || 3000, () => console.log('http://localhost:3000'))
 
