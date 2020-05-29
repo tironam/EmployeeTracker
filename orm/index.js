@@ -1,10 +1,10 @@
 const db = require('../db')
 
 const orm = {
-    getAll (table, cb) {
+    getAll (table) {
         db.query(`SELECT * FROM ${table}`, (err, data) => {
             if (err) { console.log(err) }
-            cb(data)
+            console.table(data)
         })
     },
     getAllWhere (table, where, cb) {

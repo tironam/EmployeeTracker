@@ -1,19 +1,19 @@
 const orm = require('../db')
 
 module.exports = {
-    getEmployees (cb) {
-        orm.getAll('employees', employees => cb(employees))
+    getEmployees() {
+        orm.getAll('employee')
     },
-    getEmployeesWhere (where, cb) {
-        orm.getAllWhere('employees', where, employees => cb(employees))
+    getEmployeesWhere (where) {
+        orm.getAllWhere('employee', where, employee)
     },
-    addEmployee (employee, cb) {
-        orm.createOne('employees', employee, info => cb(info))
+    addEmployee (employee) {
+        orm.createOne('employee', employee, info)
     },
-    updateEmployee (changes, where, cb) {
-        orm.updateOne('employees', changes, where, info => cb(info))
+    updateEmployee (changes, where) {
+        orm.updateOne('employee', changes, where, info)
     },
     deleteEmployee (where, db) {
-        orm.deleteOne('employees', where, info => cb(info))
+        orm.deleteOne('employee', where, info)
     }
 }
