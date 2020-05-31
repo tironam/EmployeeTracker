@@ -1,5 +1,6 @@
 const mysql = require('mysql2')
-const { prompt } = require('inquirer')
+// const { prompt } = require('inquirer')
+const inquirer = require('inquirer')
 const { promisify } = require('util')
 const express = require('express')
 const app = express()
@@ -15,7 +16,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 let choosePrompt = () => {
-    prompt([
+    inquirer.prompt([
         {
             type: 'list',
             name: 'prompt',
@@ -23,10 +24,11 @@ let choosePrompt = () => {
             choices: ['View all employees', 'View all roles', 'View all departments', 'Add employee', 'Update employee role']
         }
     ])
-        .then(({ choice }) => {
-            switch(choice) {
+        .then((choice) => {
+            console.log(choice.prompt)
+            switch(choice.prompt) {
                 case 'View all employees':
-                    viewEmployees()
+                    return viewEmployees()
                     break
                 case 'View all roles':
                     viewRoles()
@@ -43,7 +45,8 @@ let choosePrompt = () => {
 
 choosePrompt()
 
-let viewEmployees = () => {
+function viewEmployees() {
+    console.log('viewemployees worked')
         Employee.getEmployees()
         choosePrompt()
    }

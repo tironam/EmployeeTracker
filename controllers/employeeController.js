@@ -1,4 +1,4 @@
-const orm = require('../db')
+const orm = require('../orm')
 
 module.exports = {
     getEmployees() {

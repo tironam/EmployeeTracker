@@ -2,6 +2,7 @@ const db = require('../db')
 
 const orm = {
     getAll (table) {
+        console.log('worked')
         db.query(`SELECT * FROM ${table}`, (err, data) => {
             if (err) { console.log(err) }
             console.table(data)
@@ -22,7 +23,7 @@ const orm = {
     updateOne (table, changes, where, cb) {
         db.query(`UPDATE ${table} SET ? WHERE ?`, [changes, where], (err, info) => {
             if (err) { console.log(err) }
-            db(info)
+            cb(info)
         })
     },
     deleteOne (table, where, cb) {
