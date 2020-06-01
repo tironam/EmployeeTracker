@@ -2,7 +2,6 @@ const db = require('../db')
 
 const orm = {
     getAll (table) {
-        console.log('worked')
         db.query(`SELECT * FROM ${table}`, (err, data) => {
             if (err) { console.log(err) }
             console.table(data)
